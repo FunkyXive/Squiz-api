@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const PORT = 4001;
+const PORT = 4002;
 const cors = require('cors');
 const mongoose = require('mongoose');
 const config = require('./DB.js');
@@ -40,32 +40,9 @@ const adminBro = new AdminBro({
                     encryptedPassword: {
                         isVisible: false,
                     }
-                    /*,
-                                        password: {
-                                            type: 'string',
-                                            isVisible: {
-                                                list: false,
-                                                edit: true,
-                                                filter: false,
-                                                show: false,
-                                            },
-                                        },
-                                        */
                 },
 
                 actions: {
-                    /* new: {
-                        before: async(request) => {
-                            if (request.payload.password != "") {
-                                request.payload = {
-                                    ...request.payload,
-                                    encryptedPassword: await bcrypt.hash(request.payload.password, 10),
-                                    password: undefined,
-                                }
-                            }
-                            return request
-                        },
-                    }, */
                     edit: { isAccessible: canModifyUsers },
                     delete: { isAccessible: canModifyUsers },
                     new: { isAccessible: canModifyUsers },
